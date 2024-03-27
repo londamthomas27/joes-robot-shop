@@ -8,6 +8,7 @@ import { IProduct } from './product.model';
 })
 export class CatalogComponent {
   products: IProduct[];
+  filter: string = '';
 
   constructor() {
     this.products =  [
@@ -188,6 +189,12 @@ export class CatalogComponent {
   }
 
   getImageUrl(product: IProduct) {
-    return;
+    return '/assets/images/robot-parts/' + product.imageName;
+  }
+
+  getFilteredProducts() {
+    return this.filter === ''
+    ? this.products
+    : this.products.filter((product) => product.category === this.filter);
   }
 }
